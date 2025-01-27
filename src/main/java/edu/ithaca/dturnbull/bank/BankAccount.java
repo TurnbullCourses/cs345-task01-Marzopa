@@ -120,7 +120,10 @@ public class BankAccount {
      * @throws IllegalArgumentException if amount is invalid
      */
     public void deposit(double amount) {
-        
+        if (!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount is invalid");
+        }
+        balance += amount;
     }
 
     /**
