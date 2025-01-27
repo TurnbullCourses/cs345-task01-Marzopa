@@ -95,7 +95,10 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid("abcdef@mail.tl!d"));
         
         // Equivalence classes are valid and invalid mails, subdivided into bad local part and bad domain
+        //would seperate equivalence classed in parts of email like maybe prefix domain and TLD?
+    
     }
+    
 
     
 
