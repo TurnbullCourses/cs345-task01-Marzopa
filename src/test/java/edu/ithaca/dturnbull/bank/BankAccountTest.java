@@ -81,7 +81,12 @@ class BankAccountTest {
         assertFalse( BankAccount.isEmailValid("abcdef@mail"));
         // Invalid email format with no (TLD) Border? Missing a TLD,no perid and two letters
         assertFalse( BankAccount.isEmailValid("abcdef@mail.c"));
-        // Invalid email with invalid TLD format. Border? .com in TLD  must be at least 2 characters long 
+        // Invalid email with invalid TLD format. Border? .com in TLD  must be at least 2 characters long
+        
+        //would also test following
+        //missing prefix or domain
+        //check using emails with numbers
+        //check about symbols in TLD
     }
 
     
