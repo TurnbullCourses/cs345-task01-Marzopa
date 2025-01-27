@@ -9,6 +9,10 @@ public class BankAccount {
      * @throws IllegalArgumentException if email is invalid
      */
     public BankAccount(String email, double startingBalance){
+        if (startingBalance < 0){
+            throw new IllegalArgumentException("Cannot create account with negative balance");
+        }
+
         if (isEmailValid(email)){
             this.email = email;
             this.balance = startingBalance;

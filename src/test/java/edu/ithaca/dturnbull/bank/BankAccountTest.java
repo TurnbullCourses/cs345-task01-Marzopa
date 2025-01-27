@@ -11,9 +11,19 @@ class BankAccountTest {
 
     @Test
     void getBalanceTest() {
+        
+        // Equivalence class of balance being positive
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
-
         assertEquals(200, bankAccount.getBalance(), 0.001);
+        
+        // Equivalence class of balance being 0
+        bankAccount = new BankAccount("a@b.com", 0);
+        assertEquals(0, bankAccount.getBalance(), 0.001);
+        
+        // Equivalence class of balance being negative
+        assertThrows(IllegalArgumentException.class, () -> new BankAccount("a@b.com", -100));
+        
+        
     }
 
     @Test
