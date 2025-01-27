@@ -28,7 +28,7 @@ class BankAccountTest {
 
     @Test
     void withdrawTest() throws InsufficientFundsException{
-        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        final BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
         // Equivalence class of amount < balance
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
@@ -40,7 +40,18 @@ class BankAccountTest {
         assertEquals(100, bankAccount.getBalance(), 0.001);
         bankAccount.withdraw(100);
         assertEquals(0, bankAccount.getBalance(), 0.001);
+
+        final BankAccount bankAccount2= new BankAccount("a@b.com", 200);
+        // Check invalid amounts
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-100));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(25.001));
         
+        // Check edge valid amounts
+        bankAccount2.withdraw(0.01);
+        bankAccount2.withdraw(0.0);
+        bankAccount2.withdraw(0.000);
         
     }
 
@@ -143,6 +154,17 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance(), 0.001);
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+        
+        // Check invalid amounts
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -0.001));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 0.001));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 25.001));
+        
+        // Check edge valid amounts
+        new BankAccount("a@b.com", 0.01);
+        new BankAccount("a@b.com", 0.0);
+        new BankAccount("a@b.com", 0.000);
     }
 
 }
