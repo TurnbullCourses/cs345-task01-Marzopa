@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 
@@ -88,9 +87,14 @@ class BankAccountTest {
         
         //would also test following
         //missing prefix or domain
+        assertFalse(BankAccount.isEmailValid("@mail.com"));
+        assertFalse(BankAccount.isEmailValid("abcdef@"));
         //check using emails with numbers
+        assertTrue(BankAccount.isEmailValid("abc45d@mail.org"));
         //check about symbols in TLD
-    
+        assertFalse(BankAccount.isEmailValid("abcdef@mail.tl!d"));
+        
+        // Equivalence classes are valid and invalid mails, subdivided into bad local part and bad domain
     }
 
     
