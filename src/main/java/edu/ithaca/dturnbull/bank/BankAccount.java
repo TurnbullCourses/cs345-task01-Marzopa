@@ -132,7 +132,16 @@ public class BankAccount {
      * @throws IllegalArgumentException if amount is invalid or zero
      */
     public void transfer(BankAccount other, double amount) throws InsufficientFundsException {
-        
+        if (amount > balance) {
+            throw new InsufficientFundsException("Not enough money");
+        }
+        else if (!isAmountValid(amount) || amount == 0){
+            throw new IllegalArgumentException("Amount is invalid");
+        }
+        else {
+            balance -= amount;
+            other.deposit(amount);
+        }
     }
 
 }
