@@ -119,7 +119,21 @@ class BankAccountTest {
     }
     
 
-    
+    @Test
+    void isAmountValidTest(){
+        assertTrue(BankAccount.isAmountValid(0)); // Equivalence class of amount being 0
+        assertTrue(BankAccount.isAmountValid(0.0)); // Equivalence class of amount being 0
+        assertTrue(BankAccount.isAmountValid(0.00)); // Equivalence class of amount being 0
+        assertFalse(BankAccount.isAmountValid(0.000)); // Equivalence class of amount being 0, border case three decimal places
+
+        assertTrue(BankAccount.isAmountValid(100)); // Equivalence class of amount being positive
+        assertTrue(BankAccount.isAmountValid(0.01)); // Equivalence class of amount being positive, border case least amount possible
+        assertFalse(BankAccount.isAmountValid(0.001)); // Equivalence class of amount being positive, border case small amount, not possible
+
+        assertFalse(BankAccount.isAmountValid(-100)); // Equivalence class of amount being negative
+        assertFalse(BankAccount.isAmountValid(-0.01)); // Equivalence class of amount being negative, border case small amount
+        assertFalse(BankAccount.isAmountValid(-0.001)); // Equivalence class of amount being negative, border case smaller amount
+    }
 
     @Test
     void constructorTest() {

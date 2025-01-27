@@ -90,4 +90,12 @@ public class BankAccount {
 
     }
     
+    /**
+     * @param amount amount to test for
+     * @return true if amount is valid for BankAccoount, false otherwise
+     */
+    public static boolean isAmountValid(double amount){
+        return false;
+    }
+
 }
