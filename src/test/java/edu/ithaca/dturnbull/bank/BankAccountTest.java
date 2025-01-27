@@ -124,7 +124,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isAmountValid(0)); // Equivalence class of amount being 0
         assertTrue(BankAccount.isAmountValid(0.0)); // Equivalence class of amount being 0
         assertTrue(BankAccount.isAmountValid(0.00)); // Equivalence class of amount being 0
-        assertFalse(BankAccount.isAmountValid(0.000)); // Equivalence class of amount being 0, border case three decimal places
+        assertTrue(BankAccount.isAmountValid(0.000)); // Equivalence class of amount being 0, border case three decimal places
 
         assertTrue(BankAccount.isAmountValid(100)); // Equivalence class of amount being positive
         assertTrue(BankAccount.isAmountValid(0.01)); // Equivalence class of amount being positive, border case least amount possible

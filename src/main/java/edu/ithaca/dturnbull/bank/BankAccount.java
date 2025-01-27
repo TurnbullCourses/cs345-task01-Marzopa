@@ -92,10 +92,24 @@ public class BankAccount {
     
     /**
      * @param amount amount to test for
-     * @return true if amount is valid for BankAccoount, false otherwise
+     * @return true if amount is valid for BankAccoount (at most two decimal places), false otherwise
      */
     public static boolean isAmountValid(double amount){
-        return false;
+        if (amount < 0) {
+            return false; // Amount should be positive or zero
+        }
+        
+        String amountString = Double.toString(amount);
+        int decimalIndex = amountString.indexOf('.');
+        
+        if (decimalIndex == -1){ // No point/integer
+            return true;
+        } 
+        
+        else {
+            String decimalPart = amountString.substring(decimalIndex + 1);
+            return decimalPart.length() <= 2; // At most 2 decimal places
+        }
     }
 
 }
