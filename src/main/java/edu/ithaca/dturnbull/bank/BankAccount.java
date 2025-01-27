@@ -115,4 +115,21 @@ public class BankAccount {
         }
     }
 
+    /**
+     * @post increases the balance by amount if amount is non-negative
+     * @throws IllegalArgumentException if amount is invalid
+     */
+    public void deposit(double amount) {
+        
+    }
+
+    /**
+     * @post reduces the balance by amount if amount is valid and smaller or equal to balance
+     * @throws InsufficientFundsException if amount is greater than balance
+     * @throws IllegalArgumentException if amount is invalid or zero
+     */
+    public void transfer(BankAccount other, double amount) throws InsufficientFundsException {
+        
+    }
+
 }

@@ -167,4 +167,49 @@ class BankAccountTest {
         new BankAccount("a@b.com", 0.000);
     }
 
+    @Test
+    void depositTest() {
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        // Equivalence class invalid amounts
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-100));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(25.001));
+        
+        // Equivalence class edge valid amounts
+        bankAccount.deposit(0.01);
+        bankAccount.deposit(0.0);
+        bankAccount.deposit(0.000);
+        
+        // Equivalence class of valid amounts
+        assertEquals(200.01, bankAccount.getBalance(), 0.0001);
+        bankAccount.deposit(153.12);
+        assertEquals(353.13, bankAccount.getBalance(), 0.0001);
+    }
+    
+    @Test
+    void transferTest() throws InsufficientFundsException {
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        BankAccount bankAccount2 = new BankAccount("b@c.org", 100);
+        
+        // Equivalence class of amount <= balance
+        bankAccount.transfer(bankAccount2, 100);
+        assertEquals(100, bankAccount.getBalance(), 0.0001);
+        assertEquals(200, bankAccount2.getBalance(), 0.0001);
+        bankAccount.transfer(bankAccount2, 0.01);
+        assertEquals(99.99, bankAccount.getBalance(), 0.0001);
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.transfer(bankAccount2, 0)); //Edge case of amount being 0
+
+        // Equivalence class of amount > balance
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.transfer(bankAccount2, 100)); // Edge case amount barely over balance
+        assertThrows(InsufficientFundsException.class, ()-> bankAccount.transfer(bankAccount2, 999));
+
+        // Equivalence class of invalid amounts
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.transfer(bankAccount2, -100));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.transfer(bankAccount2, -0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.transfer(bankAccount2, 0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.transfer(bankAccount2, 25.001));
+        
+    }
 }
