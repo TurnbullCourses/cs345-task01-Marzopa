@@ -50,6 +50,8 @@ class BankAccountTest {
     }
     @Test
     void isEmailValidTestnotes(){
+        // Valid Equivalence Class
+
         assertTrue(BankAccount.isEmailValid( "a@b.com"));
         // Valid email address format
         assertTrue(BankAccount.isEmailValid( "abc-d@mail.com"));
@@ -61,6 +63,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid( "abc.def@mail-archive.co"));
         //Valid email address, format, has - and letters. Two letters in .co  .Border case? Valid .co , lenght of 2 which is lowest possible
         
+        //Invalid Equivalence Class
         assertFalse( BankAccount.isEmailValid(""));
          // Invalid email address format, Border? Completely empty string, clearly invalid
         assertFalse( BankAccount.isEmailValid("abc..d@mail.com"));
@@ -87,6 +90,7 @@ class BankAccountTest {
         //missing prefix or domain
         //check using emails with numbers
         //check about symbols in TLD
+    
     }
 
     
