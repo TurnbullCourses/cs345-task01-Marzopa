@@ -22,12 +22,15 @@ class BankAccountTest {
 
         // Equivalence class of amount < balance
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        // Edge case when amount is negative
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100));
         
         // Equivalence class of amount >= balance
         bankAccount.withdraw(100);
         assertEquals(100, bankAccount.getBalance(), 0.001);
         bankAccount.withdraw(100);
         assertEquals(0, bankAccount.getBalance(), 0.001);
+        
         
     }
 
