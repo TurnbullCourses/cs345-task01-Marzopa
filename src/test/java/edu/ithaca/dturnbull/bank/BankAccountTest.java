@@ -90,8 +90,10 @@ class BankAccountTest {
         //missing prefix or domain
         //check using emails with numbers
         //check about symbols in TLD
+        //would seperate equivalence classed in parts of email like maybe prefix domain and TLD?
     
     }
+    
 
     
 
