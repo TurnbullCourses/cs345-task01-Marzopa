@@ -127,7 +127,7 @@ public class BankAccount {
     }
 
     /**
-     * @post reduces the balance by amount if amount is valid and smaller or equal to balance
+     * @post reduces the balance by amount if amount is valid and smaller or equal to balance on this account, increases it to other account
      * @throws InsufficientFundsException if amount is greater than balance
      * @throws IllegalArgumentException if amount is invalid or zero
      */
@@ -139,7 +139,7 @@ public class BankAccount {
             throw new IllegalArgumentException("Amount is invalid");
         }
         else {
-            balance -= amount;
+            withdraw(amount);
             other.deposit(amount);
         }
     }
