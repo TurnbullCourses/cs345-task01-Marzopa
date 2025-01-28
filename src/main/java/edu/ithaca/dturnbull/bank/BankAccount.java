@@ -139,7 +139,7 @@ public class BankAccount {
             throw new IllegalArgumentException("Amount is invalid");
         }
         else {
-            withdraw(amount);
+            withdraw(amount); // Based on code review, instead of subtrating from balance
             other.deposit(amount);
         }
     }
