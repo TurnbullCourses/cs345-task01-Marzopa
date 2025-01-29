@@ -46,6 +46,19 @@ public class BankAccount {
         else balance -= amount;
 
     }
+    public void withdrawDiana (double amount) throws InsufficientFundsException{
+        
+        if (false == isAmountValid(amount)){
+            throw new IllegalArgumentException("Not valid input");
+        }
+        if (amount <= balance){
+            balance -= amount;
+            
+        }
+        else {
+            throw new InsufficientFundsException("Not enough money");
+        }
+    }
 
 
     public static boolean isEmailValid(String email){
